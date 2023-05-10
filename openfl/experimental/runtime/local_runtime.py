@@ -181,12 +181,9 @@ class LocalRuntime(Runtime):
     def collaborators(self, collaborators: List[Type[Collaborator]]):
         """Set LocalRuntime collaborators"""
         if self.backend == "single_process":
-
             def get_collab_name(collab):
                 return collab.get_name()
-
         else:
-
             def get_collab_name(collab):
                 return ray.get(collab.get_name.remote())
 
@@ -202,12 +199,9 @@ class LocalRuntime(Runtime):
     def initialize_collaborators(self):
         """initialize collaborator private attributes"""
         if self.backend == "single_process":
-
             def init_private_attrs(collab):
                 return collab.initialize_private_attributes()
-
         else:
-
             def init_private_attrs(collab):
                 return collab.initialize_private_attributes.remote()
 
