@@ -52,9 +52,6 @@ class BuildPyGRPC(build_py):
 
     def __init__(self, dist):
         """Create a sub-command to execute."""
-        print("&"*40)
-        print(f"dist: {dist}")
-        print("&"*40)
         self.subcommand = BuildPackageProtos(dist)
         super().__init__(dist)
 
@@ -69,9 +66,6 @@ class DevelopGRPC(develop):
 
     def __init__(self, dist):
         """Create a sub-command to execute."""
-        print("&"*40)
-        print(f"dist: {dist}")
-        print("&"*40)
         self.subcommand = BuildPackageProtos(dist)
         super().__init__(dist)
 
@@ -108,7 +102,6 @@ setup(
         'openfl.databases',
         'openfl.databases.utilities',
         'openfl.experimental',
-        # 'openfl.experimental.workspace_creator',
         'openfl.experimental.workspace_builder',
         'openfl.experimental.federated',
         'openfl.experimental.federated.plan',
@@ -117,6 +110,10 @@ setup(
         'openfl.experimental.component.collaborator',
         'openfl.experimental.interface.cli',
         'openfl.experimental.interface',
+        'openfl.experimental.interface.keras',
+        'openfl.experimental.interface.keras.aggregation_functions',
+        'openfl.experimental.interface.torch',
+        'openfl.experimental.interface.torch.aggregation_functions',
         'openfl.experimental.placement',
         'openfl.experimental.runtime',
         'openfl.experimental.protocols',
@@ -200,6 +197,7 @@ setup(
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11',
+
     ],
     entry_points={
         'console_scripts': ['fx=openfl.interface.cli:entry',]
