@@ -72,7 +72,7 @@ class CutoffTimeBasedStragglerHandling(StragglerHandlingPolicy):
         # do not start the policy.
         if self.straggler_cutoff_time == np.inf or hasattr(self, "timer"):
             return
-        self.round_start_time = time.time()
+        self.round_start_time = time.monotonic()
         self.timer = threading.Timer(
             self.straggler_cutoff_time,
             callback,
@@ -125,7 +125,7 @@ class CutoffTimeBasedStragglerHandling(StragglerHandlingPolicy):
             bool: True if the straggler time has expired, False otherwise.
         """
         return self.round_start_time is not None and (
-            (time.time() - self.round_start_time) > self.straggler_cutoff_time
+            (time.monotonic() - self.round_start_time) > self.straggler_cutoff_time
         )
 
     def __minimum_collaborators_reported(self, num_collaborators_done) -> bool:
